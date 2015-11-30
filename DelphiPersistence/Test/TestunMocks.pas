@@ -191,6 +191,11 @@ type
     (* Grupo de testes de rotinas geração de classes a partir de um banco de dados *)
     procedure TestCriacaoDeTipoAPartirDo_Firebird;
 
+
+
+    procedure TestPopulaTabelaMaster;
+
+
   end;
 
 
@@ -210,14 +215,11 @@ procedure TestTMasterDatamanagerTest.TestaConstrutorBase_Firebird;
 var
   baseExiste:boolean;
   base:string;
-begin
-  base := ExtractFilePath(ParamStr(0))+'Dados\'+'teste_unitario.fdb';
 
-  DeleteFile(base);
-  baseExiste := FileExists(base);
-  CheckEquals(False,baseExiste,'A Base de testes não pode re-criada, possivelmente existem conexões abertas com uma base de teste pré-existente!');
+begin
   FMasterDatamanagerTest := TMasterDatamanagerTest.Create;
-  CheckEquals(True,FileExists(base),'Erro,Banco de dados não foi criado corretamente!');
+  base := FMasterDatamanagerTest.getParamFromIni('teste.teste_unitario',dpsPATH,'');
+  CheckEquals(True,FileExists(base),'Banco de dados não foi criado corretamente!');
 end;
 
 procedure TestTMasterDatamanagerTest.TesteSeTipoEnumeradoExiste_Firebird;
@@ -236,6 +238,25 @@ procedure TestTMasterDatamanagerTest.TesteSeTipoSetDeEnumeracaoExiste_Firebird;
 begin
   FMasterDatamanagerTest := TMasterDatamanagerTest.Create;
   CheckEquals(True,FMasterDatamanagerTest.OwnTypeExists('SETDEENUMERACAO'),'Tipo de campo Set de Enumeração não foi criado como esperado!');
+end;
+
+procedure TestTMasterDatamanagerTest.TestPopulaTabelaMaster;
+var
+  modeloMaster:TDBModelTeste;
+  i:integer;
+begin
+  FMasterDatamanagerTest := TMasterDatamanagerTest.Create;
+  for i:= 0 to 1000 do
+  begin
+    modeloMaster :=  TDBModelTeste.Create(FMasterDatamanagerTest);
+    modeloMaster.CampoNome      := format('modelo[%d]',[i]);
+    modeloMaster.CampoDescricao := format('modelo[%d]',[i]);
+
+    modeloMaster.save;
+   // modeloMaster.Free;
+    CheckEquals(True,True);
+   // CheckEquals(5,FMasterDatamanagerTest.ModelDB.getList().Count);
+  end;
 end;
 
 procedure TestTMasterDatamanagerTest.TesteSeTipoDoubleExiste_Firebird;

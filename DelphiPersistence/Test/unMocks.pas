@@ -76,7 +76,7 @@ type
     property CampoFloat  :Extended read FCampoFloat write FCampoFloat;
     property CampoFloatPersonalizado  :dps_Extended read FCampoFloatPersonalizado write FCampoFloatPersonalizado;
     property CampoCurrency :Currency read FCampoCurrency write FCampoCurrency;
-    property CampoBoleano :Boolean read FCampoBoleano write FCampoBoleano;
+    property CampoBoleano :Boolean read FCampoBoleano write FCampoBoleano default False;
     property CampoIntegerDelphi :Integer read FCampoIntegerDelphi write FCampoIntegerDelphi;
     property CampoSetDeEnumeracao : SetDeEnumeracao read FCampoSetDeEnumeracao write FCampoSetDeEnumeracao;
     property CampoSmallint: PequenoInt read FCampoSmallint write FCampoSmallint;
@@ -86,7 +86,7 @@ type
     property CampoHoraPersonalizada:HoraPersonalizada read FCampoHoraPersonalizada Write FCampoHoraPersonalizada;
     property CampoTimestamp: TDateTime read FCampoTimestamp write FCampoTimestamp;
     property CampoDataPersonal : TipoDataPersonalizada read FCampoDataHoraPersonalizada write FCampoDataHoraPersonalizada;
-    property CampoFakeBoolean:FakeBoolean read FCampoFakeBoolean write FCampoFakeBoolean;
+    property CampoFakeBoolean:FakeBoolean read FCampoFakeBoolean write FCampoFakeBoolean default false;
     property CampoDinheiro:Dinheiro read FCampoDinheiro write FCampoDinheiro;
   end;
 
@@ -112,7 +112,9 @@ type
     FModelDB:TDBModelTeste;
     FModelDBDetalhe:TDBModelDetalheTeste;
   public
-     constructor Create;override;
+    property ModelDB:TDBModelTeste read FModelDB write FModelDB;
+    property ModelDBDetalhe:TDBModelDetalheTeste read FModelDBDetalhe write FModelDBDetalhe;
+    constructor Create;override;
   end;
 
 implementation
