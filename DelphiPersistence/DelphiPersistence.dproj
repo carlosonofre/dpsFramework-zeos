@@ -132,7 +132,7 @@
                     <VersionInfo Name="MajorVer">3</VersionInfo>
                     <VersionInfo Name="MinorVer">0</VersionInfo>
                     <VersionInfo Name="Release">1</VersionInfo>
-                    <VersionInfo Name="Build">3331</VersionInfo>
+                    <VersionInfo Name="Build">3353</VersionInfo>
                     <VersionInfo Name="Debug">False</VersionInfo>
                     <VersionInfo Name="PreRelease">False</VersionInfo>
                     <VersionInfo Name="Special">False</VersionInfo>
@@ -144,7 +144,7 @@
                 <VersionInfoKeys>
                     <VersionInfoKeys Name="CompanyName">C.O.D.S.</VersionInfoKeys>
                     <VersionInfoKeys Name="FileDescription">Delphi Persistence Library</VersionInfoKeys>
-                    <VersionInfoKeys Name="FileVersion">3.0.1.3331</VersionInfoKeys>
+                    <VersionInfoKeys Name="FileVersion">3.0.1.3353</VersionInfoKeys>
                     <VersionInfoKeys Name="InternalName">DpsLibrary</VersionInfoKeys>
                     <VersionInfoKeys Name="LegalCopyright">C.O.D.S.</VersionInfoKeys>
                     <VersionInfoKeys Name="LegalTrademarks"/>

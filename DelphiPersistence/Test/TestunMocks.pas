@@ -13,7 +13,7 @@ interface
 
 uses
   TestFramework, DPsTypes, TypInfo, SysUtils, DPsDataManager, Graphics, unMocks,
-  System.Classes;
+  System.Classes,ZDbcIntfs;
 
 //  Windows, SysUtils, Classes,TestFramework, TestExtensions,TypInfo,Graphics,
 //  DPsDataManager,DPsTypes,Dialogs,Controls, ZDbcIntfs;
@@ -186,15 +186,11 @@ type
     (* variants *)
     procedure TestConversaoTipo_DelphiParaDatabase_TBitMap;
 
-
-
     (* Grupo de testes de rotinas geração de classes a partir de um banco de dados *)
     procedure TestCriacaoDeTipoAPartirDo_Firebird;
 
-
-
-    procedure TestPopulaTabelaMaster;
-
+    procedure TestPopulaTabelaDBModelTeste_100RegistrosIndividuais;
+    procedure TestGetByID;
 
   end;
 
@@ -240,23 +236,35 @@ begin
   CheckEquals(True,FMasterDatamanagerTest.OwnTypeExists('SETDEENUMERACAO'),'Tipo de campo Set de Enumeração não foi criado como esperado!');
 end;
 
-procedure TestTMasterDatamanagerTest.TestPopulaTabelaMaster;
+procedure TestTMasterDatamanagerTest.TestPopulaTabelaDBModelTeste_100RegistrosIndividuais;
 var
   modeloMaster:TDBModelTeste;
   i:integer;
+  rset:izResultset;
+  st:IZPreparedStatement;
+  foto:TBitMap;
 begin
   FMasterDatamanagerTest := TMasterDatamanagerTest.Create;
-  for i:= 0 to 1000 do
-  begin
-    modeloMaster :=  TDBModelTeste.Create(FMasterDatamanagerTest);
-    modeloMaster.CampoNome      := format('modelo[%d]',[i]);
-    modeloMaster.CampoDescricao := format('modelo[%d]',[i]);
+  FMasterDatamanagerTest.exec('delete from DBModelTeste');
+  (* atualizar o generator *)
+  FMasterDatamanagerTest.ModelDB.getByID(-1).UpdateLastID(True);
+  foto:= TBitMap.Create;
+  foto.LoadFromFile('C:\Arquivo\SCARLET.jpg');
 
-    modeloMaster.save;
-   // modeloMaster.Free;
-    CheckEquals(True,True);
-   // CheckEquals(5,FMasterDatamanagerTest.ModelDB.getList().Count);
+  for i:= 1 to 100 do
+  begin
+     modeloMaster                := FMasterDatamanagerTest.ModelDB.getByID(-1) ;
+     modeloMaster.CampoNome      := format('modelo[%d]',[i]);
+     modeloMaster.CampoDescricao := format('modelo[%d]',[i]);
+    // modeloMaster.CampoFoto       := foto.g;
+     modeloMaster.CampoDouble    := modeloMaster.CampoDouble + 1.0;
+     modeloMaster.save;
   end;
+  st    := FMasterDatamanagerTest.getConnection.PrepareStatement('select count(CampoID) as TOTAL from DBModelTeste');
+  rset  := st.ExecuteQueryPrepared;
+  rset.next;
+  CheckEquals( 100, rset.GetIntByName('Total'),'Nº de registros está diferente do esperado!');
+  freeandnil(foto);
 end;
 
 procedure TestTMasterDatamanagerTest.TesteSeTipoDoubleExiste_Firebird;
@@ -1997,6 +2005,16 @@ begin
 //  CheckEquals(True, slTipos.IndexOf('DPS_STRING_100')<> -1 ,'4º - Tipo dps_String_100 não será criado na Unit do corretamente');
 //  CheckEquals(True, slTipos.IndexOf('SETDEENUMERACAO')<> -1 ,'5º - Tipo SetDeEnumeracao não será criado na Unit do corretamente');
 
+end;
+
+procedure TestTMasterDatamanagerTest.TestGetByID;
+var
+  modeloMaster:TDBModelTeste;
+  i:integer;
+begin
+  FMasterDatamanagerTest := TMasterDatamanagerTest.Create;
+  modeloMaster := TDBModelTeste(FMasterDatamanagerTest.ModelDB.getByID(10)) ;
+  CheckEquals(True, SameText(modeloMaster.CampoNome,'modelo[10]') );
 end;
 
 procedure TestTMasterDatamanagerTest.TesteSeCampoFoiCriado_Firebird;
