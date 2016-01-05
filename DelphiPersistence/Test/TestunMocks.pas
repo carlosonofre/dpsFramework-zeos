@@ -13,7 +13,7 @@ interface
 
 uses
   TestFramework, DPsTypes, TypInfo, SysUtils, DPsDataManager, Graphics, unMocks,
-  System.Classes,ZDbcIntfs;
+  System.Classes,ZDbcIntfs,jpeg,Data.DB;
 
 //  Windows, SysUtils, Classes,TestFramework, TestExtensions,TypInfo,Graphics,
 //  DPsDataManager,DPsTypes,Dialogs,Controls, ZDbcIntfs;
@@ -201,12 +201,6 @@ const
 
 implementation
 
-
-//procedure TestTMasterDatamanagerTest.TestaCampoInteiro_Firebird;
-//begin
-//  CheckEquals(True,False,'Erro falso');
-//end;
-
 procedure TestTMasterDatamanagerTest.TestaConstrutorBase_Firebird;
 var
   baseExiste:boolean;
@@ -242,29 +236,24 @@ var
   i:integer;
   rset:izResultset;
   st:IZPreparedStatement;
-  foto:TBitMap;
 begin
   FMasterDatamanagerTest := TMasterDatamanagerTest.Create;
   FMasterDatamanagerTest.exec('delete from DBModelTeste');
   (* atualizar o generator *)
   FMasterDatamanagerTest.ModelDB.getByID(-1).UpdateLastID(True);
-  foto:= TBitMap.Create;
-  foto.LoadFromFile('C:\Arquivo\SCARLET.jpg');
-
-  for i:= 1 to 100 do
+  for i:= 1 to 10 do
   begin
      modeloMaster                := FMasterDatamanagerTest.ModelDB.getByID(-1) ;
      modeloMaster.CampoNome      := format('modelo[%d]',[i]);
      modeloMaster.CampoDescricao := format('modelo[%d]',[i]);
-    // modeloMaster.CampoFoto       := foto.g;
+     modeloMaster.CampoFoto      := modeloMaster.LoadFileAsBlob('C:\Arquivo\SCARLET.jpg');
      modeloMaster.CampoDouble    := modeloMaster.CampoDouble + 1.0;
      modeloMaster.save;
   end;
   st    := FMasterDatamanagerTest.getConnection.PrepareStatement('select count(CampoID) as TOTAL from DBModelTeste');
   rset  := st.ExecuteQueryPrepared;
   rset.next;
-  CheckEquals( 100, rset.GetIntByName('Total'),'Nº de registros está diferente do esperado!');
-  freeandnil(foto);
+  CheckEquals( 10, rset.GetIntByName('Total'),'Nº de registros está diferente do esperado!');
 end;
 
 procedure TestTMasterDatamanagerTest.TesteSeTipoDoubleExiste_Firebird;

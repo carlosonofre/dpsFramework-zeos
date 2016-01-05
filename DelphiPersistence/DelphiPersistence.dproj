@@ -104,6 +104,7 @@
         <DCCReference Include="IndyCore.dcp"/>
         <DCCReference Include="IndySystem.dcp"/>
         <DCCReference Include="IndyProtocols.dcp"/>
+        <DCCReference Include="DbxCommonDriver.dcp"/>
         <DCCReference Include="DPsDataManager.pas"/>
         <DCCReference Include="DPsTypes.pas"/>
         <BuildConfiguration Include="Debug">
@@ -132,7 +133,7 @@
                     <VersionInfo Name="MajorVer">3</VersionInfo>
                     <VersionInfo Name="MinorVer">0</VersionInfo>
                     <VersionInfo Name="Release">1</VersionInfo>
-                    <VersionInfo Name="Build">3353</VersionInfo>
+                    <VersionInfo Name="Build">3446</VersionInfo>
                     <VersionInfo Name="Debug">False</VersionInfo>
                     <VersionInfo Name="PreRelease">False</VersionInfo>
                     <VersionInfo Name="Special">False</VersionInfo>
@@ -144,7 +145,7 @@
                 <VersionInfoKeys>
                     <VersionInfoKeys Name="CompanyName">C.O.D.S.</VersionInfoKeys>
                     <VersionInfoKeys Name="FileDescription">Delphi Persistence Library</VersionInfoKeys>
-                    <VersionInfoKeys Name="FileVersion">3.0.1.3353</VersionInfoKeys>
+                    <VersionInfoKeys Name="FileVersion">3.0.1.3446</VersionInfoKeys>
                     <VersionInfoKeys Name="InternalName">DpsLibrary</VersionInfoKeys>
                     <VersionInfoKeys Name="LegalCopyright">C.O.D.S.</VersionInfoKeys>
                     <VersionInfoKeys Name="LegalTrademarks"/>

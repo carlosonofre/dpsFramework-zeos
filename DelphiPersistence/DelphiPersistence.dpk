@@ -39,7 +39,8 @@ requires
   vclib,
   IndyCore,
   IndySystem,
-  IndyProtocols;
+  IndyProtocols,
+  DbxCommonDriver;
 
 contains
   DPsDataManager in 'DPsDataManager.pas',

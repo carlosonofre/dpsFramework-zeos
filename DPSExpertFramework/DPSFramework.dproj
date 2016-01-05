@@ -139,7 +139,7 @@
                     <VersionInfo Name="MajorVer">3</VersionInfo>
                     <VersionInfo Name="MinorVer">0</VersionInfo>
                     <VersionInfo Name="Release">0</VersionInfo>
-                    <VersionInfo Name="Build">9645</VersionInfo>
+                    <VersionInfo Name="Build">9671</VersionInfo>
                     <VersionInfo Name="Debug">False</VersionInfo>
                     <VersionInfo Name="PreRelease">False</VersionInfo>
                     <VersionInfo Name="Special">False</VersionInfo>
@@ -151,7 +151,7 @@
                 <VersionInfoKeys>
                     <VersionInfoKeys Name="CompanyName">T.O.Box Software</VersionInfoKeys>
                     <VersionInfoKeys Name="FileDescription">Delphi Persistence Wizard</VersionInfoKeys>
-                    <VersionInfoKeys Name="FileVersion">3.0.0.9645</VersionInfoKeys>
+                    <VersionInfoKeys Name="FileVersion">3.0.0.9671</VersionInfoKeys>
                     <VersionInfoKeys Name="InternalName">DPSWizard</VersionInfoKeys>
                     <VersionInfoKeys Name="LegalCopyright"/>
                     <VersionInfoKeys Name="LegalTrademarks"/>
