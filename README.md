@@ -1,7 +1,7 @@
 # dpsFramework-zeos
 Framework de Persistência - ORM [Delphi+Zeos Lib]
 
-Estes framework tem por objetivo ajudar aos programadores Delphi/Pascal a implementar OO com mais eficiência em seus projetos.
+Este framework tem por objetivo ajudar aos programadores Delphi/Pascal a implementar OO com mais eficiência em seus projetos.
 
 Este projeto teve início quando comecei meus estudos de desenvolvimento para plataforma Android, conheci um framework feito por um colega, Douglas Cavalheiro(DroidPersistence),estudar este framework em outra linguagem me levou a duas conclusões importantes.
 
