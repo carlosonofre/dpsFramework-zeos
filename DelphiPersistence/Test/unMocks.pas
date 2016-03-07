@@ -5,8 +5,7 @@ interface
 uses
 
   Winapi.Windows,Messages,SysUtils,Variants,Classes,Vcl.Graphics,System.Generics.Collections,
-  Vcl.Imaging.jpeg,
-  cxListView,ZDbcIntfs,
+  Vcl.Imaging.jpeg,ZDbcIntfs,
   (* comum a todas as classes de persistência*)
   DB,DPsTypes,DPsDataManager,DBClient;
 
