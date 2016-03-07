@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{7168A9C3-E545-4E29-8444-728725FE3294}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="DelphiPersistence\DelphiPersistence.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="DPSExpertFramework\DPSFramework.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="DelphiPersistence\Test\DelphiPersistenceTests.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="DelphiPersistence">
+        <MSBuild Projects="DelphiPersistence\DelphiPersistence.dproj"/>
+    </Target>
+    <Target Name="DelphiPersistence:Clean">
+        <MSBuild Projects="DelphiPersistence\DelphiPersistence.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DelphiPersistence:Make">
+        <MSBuild Projects="DelphiPersistence\DelphiPersistence.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="DPSFramework">
+        <MSBuild Projects="DPSExpertFramework\DPSFramework.dproj"/>
+    </Target>
+    <Target Name="DPSFramework:Clean">
+        <MSBuild Projects="DPSExpertFramework\DPSFramework.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DPSFramework:Make">
+        <MSBuild Projects="DPSExpertFramework\DPSFramework.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="DelphiPersistenceTests">
+        <MSBuild Projects="DelphiPersistence\Test\DelphiPersistenceTests.dproj"/>
+    </Target>
+    <Target Name="DelphiPersistenceTests:Clean">
+        <MSBuild Projects="DelphiPersistence\Test\DelphiPersistenceTests.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DelphiPersistenceTests:Make">
+        <MSBuild Projects="DelphiPersistence\Test\DelphiPersistenceTests.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="DelphiPersistence;DPSFramework;DelphiPersistenceTests"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="DelphiPersistence:Clean;DPSFramework:Clean;DelphiPersistenceTests:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="DelphiPersistence:Make;DPSFramework:Make;DelphiPersistenceTests:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
